@@ -15,18 +15,28 @@ set noswapfile
 set autoread
 set backspace=2
 set hidden
-set wildchar=<Tab> wildmenu wildmode=full
 set ignorecase
 set smartcase
 set incsearch
 set nobackup
 set confirm
+filetype on
+filetype plugin on
+set fileformats=unix,dos,mac
+set scrolloff=5
 
 " Apparently, some Vims don't have autochdir.
 if exists("+autochdir")
 	set autochdir
 endif
 
+
+""""""""""""
+" Wildmenu "
+""""""""""""
+set wildmenu
+set wildignore=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class
+set wildmode=full
 
 """"""""""""""
 " Appearance "
