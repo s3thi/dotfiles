@@ -79,6 +79,8 @@ map <F1> :AT <CR>
 map <F2> \be
 map <F5> :source $MYVIMRC <CR>
 map <M-BS> <C-w>
+map <C-e> <End>
+map <C-a> <Home>
 
 " Scroll by display lines instead of logical lines.
 :noremap k gk
