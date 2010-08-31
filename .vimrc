@@ -62,9 +62,7 @@ filetype plugin indent on
 " GUI Specific "
 """"""""""""""""
 if has("gui_running")
-    colorscheme molokai
-    set lines=40
-    set columns=100
+    colorscheme koehler
 	
 	" MacVim specific options.
 	if has("gui_macvim")
