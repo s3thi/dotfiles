@@ -89,7 +89,6 @@ map <F5> :source $MYVIMRC <CR>
 map <M-BS> <C-w>
 map <C-e> <End>
 map <C-a> <Home>
-map :q :bd
 
 " Scroll by display lines instead of logical lines.
 :noremap k gk
@@ -104,9 +103,9 @@ else
 endif
 
 " Navigating buffers.
-map <C-Tab> :bn<CR>
-map <C-S-Tab> :bp<CR>
-map <M-Tab> <C-^>
+map <C-Tab> :tabnext<CR>
+map <C-S-Tab> :tabprevious<CR>
+map <C-1> <C-^>
 
 
 " Settings for Ruby files.
