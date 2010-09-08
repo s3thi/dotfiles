@@ -1,6 +1,10 @@
 startup_message off
 vbell off
 
+# Mac OS X is, as usual, incredibly stupid.
+# Ah well.
+shell -${SHELL}
+
 # Proudly stolen from the Gentoo wiki
 hardstatus alwayslastline
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
