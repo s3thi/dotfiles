@@ -1,0 +1,20 @@
+if [[ $- != *i* ]] ; then
+    # Shell is non-interactive.  Be done now!
+    return
+fi
+
+# Variables for prompt colors.
+# Prompt
+BGREEN='\[\033[1;32m\]'
+GREEN='\[\033[0;32m\]'
+BRED='\[\033[1;31m\]'
+RED='\[\033[0;31m\]'
+BBLUE='\[\033[1;34m\]'
+BLUE='\[\033[0;34m\]'
+NORMAL='\[\033[00m\]'
+
+alias ls='ls -G'
+alias la='ls -aG'
+alias ll='ls -lG'
+
+PS1="\u@${RED}\h${NORMAL}: ${BLUE}\w${NORMAL} $ "
