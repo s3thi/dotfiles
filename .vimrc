@@ -107,17 +107,6 @@ map <C-Tab> :tabnext<CR>
 map <C-S-Tab> :tabprevious<CR>
 map <C-1> <C-^>
 
-" Disable arrow keys.
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
-
 " Settings for Ruby files.
 autocmd BufNewFile,BufRead *.rb
     \ setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
