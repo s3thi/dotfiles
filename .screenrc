@@ -19,3 +19,5 @@ bind 0 select 10
 screen 1
 select 1
 
+# MOAR scrollback. Any idea how I set this to infinity?
+defscrollback 10000
