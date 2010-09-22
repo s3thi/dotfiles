@@ -4,7 +4,6 @@ if [[ $- != *i* ]] ; then
 fi
 
 # Variables for prompt colors.
-# Prompt
 BGREEN='\[\033[1;32m\]'
 GREEN='\[\033[0;32m\]'
 BRED='\[\033[1;31m\]'
@@ -16,5 +15,12 @@ NORMAL='\[\033[00m\]'
 alias ls='ls -G'
 alias la='ls -aG'
 alias ll='ls -lG'
+alias tl='tree | less'
+
+# Git aliases.
+alias gis='git status'
+alias gip='git pull origin master'
+alias gipu='git push origin master'
+alias gic='git commit'
 
 PS1="\u@${RED}\h${NORMAL}: ${BLUE}\w${NORMAL} $ "
