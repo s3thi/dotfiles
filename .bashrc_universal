@@ -3,6 +3,8 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
+export EDITOR=vim
+
 # Variables for prompt colors.
 BGREEN='\[\033[1;32m\]'
 GREEN='\[\033[0;32m\]'
@@ -16,6 +18,9 @@ alias ls='ls -G'
 alias la='ls -aG'
 alias ll='ls -lG'
 alias tl='tree | less'
+alias chvim='$EDITOR ~/.vimrc'
+alias chbash='$EDITOR ~/.bashrc'
+alias chprofile='$EDITOR ~/.bash_profile'
 
 # Git aliases.
 alias gis='git status'

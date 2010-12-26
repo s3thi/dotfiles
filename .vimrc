@@ -62,17 +62,17 @@ filetype plugin indent on
 " GUI Specific "
 """"""""""""""""
 if has("gui_running")
-    colorscheme koehler
+    colorscheme wombat
 	
 	" MacVim specific options.
 	if has("gui_macvim")
         " set fuoptions=maxvert,maxhorz,background:Normal
         " au GUIEnter * set fullscreen
-        " Turn off the annoying 'ding' and visual bell.
-		set vb t_vb=
+        set guifont=Anonymous:h14
 	endif
 
 	set cursorline
+    set vb t_vb=
 
 	" No menus, toolbars.
 	set guioptions-=m
@@ -93,6 +93,8 @@ map <C-a> <Home>
 " Scroll by display lines instead of logical lines.
 :noremap k gk
 :noremap j gj
+:noremap <Up> gk
+:noremap <Down> gj
 
 if has("macunix")
 	map <D-[> :tabprevious <CR>
