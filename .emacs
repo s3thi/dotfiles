@@ -2,6 +2,8 @@
 
 (defvar *the-numbers* '(4 8 15 16 23 42))
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+
 (tool-bar-mode nil)
 (require 'paren)
 (show-paren-mode t)
@@ -41,8 +43,10 @@
   (interactive "P")
   (other-window (- (prefix-numeric-value n))))
 
-(global-set-key [(C .)] 'other-window)
-(global-set-key [(C ,)] 'other-window-backward)
+(global-set-key (kbd "C-0") 'other-window)
+(global-set-key (kbd "C-9") 'other-window-backward)
+(global-set-key (kbd "C-<return>") 'dabbrev-expand)
+(global-set-key (kbd "C-1") 'delete-other-windows)
 
 ;; Enable Org Mode.
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -101,3 +105,8 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
+
+(require 'command-frequency)
+(command-frequency-table-load)
+(command-frequency-mode 1)
+(command-frequency-autosave-mode 1)
