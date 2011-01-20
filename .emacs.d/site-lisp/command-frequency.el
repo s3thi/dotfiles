@@ -83,6 +83,18 @@
 ;; Version 0.1, 2006: First version by Ryan Yeske. A quick hack of about 40 lines. 
 ;;}}}
 
+;; Ignored commands.
+
+(setq command-frequency-ignored-commands
+      '(self-insert-command
+        next-line
+        previous-line
+        forward-char
+        backward-char
+        newline
+        forward-word
+        backward-word))
+
 ;;{{{ DEFINE MINOR MODE
 
 (defgroup command-frequency nil
@@ -131,7 +143,7 @@ by default."
 (defun command-frequency-record ()
   "Records command execution in `command-frequency-table' hash."
   (let ((command real-last-command) count)
-    (when command
+    (when (and command (not (memq command command-frequency-ignored-commands)))
       (setq count (gethash command command-frequency-table))
       (puthash command (if count (1+ count) 1)
                command-frequency-table))))

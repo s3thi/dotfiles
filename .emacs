@@ -76,10 +76,12 @@
 ;; (add-to-list 'default-frame-alist (cons 'left 0))
 ;; (add-to-list 'default-frame-alist (cons 'top 0))
 
-(setq inferior-lisp-program "/opt/local/bin/sbcl")
+(set-language-environment "utf-8")
 (add-to-list 'load-path "~/Source/slime/")
+(setq inferior-lisp-program "/opt/local/bin/sbcl")
+(setq slime-net-coding-system 'utf-8-unix)
 (require 'slime)
-(slime-setup)
+(slime-setup '(slime-fancy))
 
 ;; M-x mac-font-panel-mode gets you the font panel. M-x describe-font
 ;; gets you the name of the font.
@@ -110,3 +112,14 @@
 (command-frequency-table-load)
 (command-frequency-mode 1)
 (command-frequency-autosave-mode 1)
+
+;; Modeline is not 3D.
+(set-face-attribute 'mode-line nil :box nil)
+(setq display-time-24hr-format t)
+(display-time)
+
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-2") 'goto-line)
