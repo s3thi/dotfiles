@@ -9,6 +9,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq mac-option-modifier 'meta)
+(menu-bar-mode nil)
 
 ;; Spaces, not tabs.
 (setq-default indent-tabs-mode nil)
