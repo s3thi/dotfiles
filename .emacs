@@ -1,13 +1,5 @@
 ;; Ankur Sethi's .emacs
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 (defvar *the-numbers* '(4 8 15 16 23 42))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
@@ -85,11 +77,6 @@
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "/opt/local/bin/ccl64")
-
-;; M-x mac-font-panel-mode gets you the font panel. M-x describe-font
-;; gets you the name of the font.
-(set-default-font
- "-apple-anonymous-medium-r-normal--16-140-72-72-m-140-iso10646-1")
 
 ;; Colors in shell.
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
