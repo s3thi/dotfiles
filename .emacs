@@ -1,10 +1,18 @@
 ;; Ankur Sethi's .emacs
 
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+
 (defvar *the-numbers* '(4 8 15 16 23 42))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 (require 'paren)
 (show-paren-mode t)
 (column-number-mode t)
@@ -15,7 +23,6 @@
 
 ;; Show region.
 (transient-mark-mode t)
-
 (setq search-highlight t)
 (setq scroll-step 2)
 (setq kill-whole-line t)
@@ -33,8 +40,8 @@
 (global-set-key [(meta return)] 'toggle-fullscreen)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-(require 'color-theme)
-(color-theme-initialize)
+;; (require 'color-theme)
+;; (color-theme-initialize)
 (scroll-bar-mode nil)
 (setq make-backup-files nil)
 
@@ -76,12 +83,8 @@
 ;; (add-to-list 'default-frame-alist (cons 'left 0))
 ;; (add-to-list 'default-frame-alist (cons 'top 0))
 
-(set-language-environment "utf-8")
-(add-to-list 'load-path "~/Source/slime/")
-(setq inferior-lisp-program "/opt/local/bin/sbcl")
-(setq slime-net-coding-system 'utf-8-unix)
-(require 'slime)
-(slime-setup '(slime-fancy))
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "/opt/local/bin/ccl64")
 
 ;; M-x mac-font-panel-mode gets you the font panel. M-x describe-font
 ;; gets you the name of the font.
@@ -123,3 +126,5 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "C-2") 'goto-line)
+
+(put 'dired-find-alternate-file 'disabled nil)
