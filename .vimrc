@@ -61,6 +61,8 @@ filetype plugin indent on
 """"""""""""""""
 " GUI Specific "
 """"""""""""""""
+set guioptions-=m
+set guioptions-=T
 if has("gui_running")
     colorscheme wombat
 	
@@ -75,8 +77,6 @@ if has("gui_running")
     set vb t_vb=
 
 	" No menus, toolbars.
-	set guioptions-=m
-	set guioptions-=T
 endif
 
 
