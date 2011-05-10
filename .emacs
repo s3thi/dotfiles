@@ -1,13 +1,5 @@
 ;; Ankur Sethi's .emacs
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 (defvar *the-numbers* '(4 8 15 16 23 42))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
