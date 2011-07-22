@@ -1,16 +1,15 @@
 ;; Ankur Sethi's .emacs
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 (defvar *the-numbers* '(4 8 15 16 23 42))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(require 'go-mode-load)
+
+(let ((filename (expand-file-name "~/quicklisp/slime-helper.el")))
+  (if (file-exists-p filename)
+      (progn
+        (load filename)
+        (setq inferior-lisp-program "clisp"))))
 
 (tool-bar-mode 0)
 (require 'paren)
@@ -61,9 +60,9 @@
 (define-key global-map "\C-ca" 'org-agenda)
 
 ;; Need autofill in text and org modes.
-(setq-default fill-column 80)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+;; (setq-default fill-column 80)
+;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;; ido-mode
 (require 'ido)
@@ -82,9 +81,6 @@
 ;; (add-to-list 'default-frame-alist (cons 'height 37))
 ;; (add-to-list 'default-frame-alist (cons 'left 0))
 ;; (add-to-list 'default-frame-alist (cons 'top 0))
-
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "/opt/local/bin/ccl64")
 
 ;; M-x mac-font-panel-mode gets you the font panel. M-x describe-font
 ;; gets you the name of the font.
@@ -126,5 +122,6 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "C-2") 'goto-line)
+(global-set-key (kbd "C-3") 'fill-region)
 
 (put 'dired-find-alternate-file 'disabled nil)
