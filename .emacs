@@ -12,6 +12,7 @@
         (setq inferior-lisp-program "clisp"))))
 
 (tool-bar-mode 0)
+(menu-bar-mode 0)
 (require 'paren)
 (show-paren-mode t)
 (column-number-mode t)
@@ -82,10 +83,16 @@
 ;; (add-to-list 'default-frame-alist (cons 'left 0))
 ;; (add-to-list 'default-frame-alist (cons 'top 0))
 
-;; M-x mac-font-panel-mode gets you the font panel. M-x describe-font
+(defun font-existsp (font-name)
+  (member font-name (font-family-list)))
+
+;; M-x mac-font-panel-mode gets you the font panel on OS X. M-x describe-font
 ;; gets you the name of the font.
-(set-default-font
- "-apple-anonymous-medium-r-normal--16-140-72-72-m-140-iso10646-1")
+(cond
+ ((eq system-type 'gnu/linux)
+  (set-default-font "-unknown-Anonymous Pro-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1"))
+ ((eq system-type 'darwin)
+  (set-default-font "-apple-anonymous-medium-r-normal--16-140-72-72-m-140-iso10646-1")))
 
 ;; Colors in shell.
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
