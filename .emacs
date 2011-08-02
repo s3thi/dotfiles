@@ -128,7 +128,7 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-(global-set-key (kbd "C-2") 'goto-line)
-(global-set-key (kbd "C-3") 'fill-region)
+(global-set-key (kbd "C-l") 'goto-line)
+(global-set-key (kbd "C-f") 'fill-region)
 
 (put 'dired-find-alternate-file 'disabled nil)
