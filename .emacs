@@ -18,8 +18,14 @@
 (column-number-mode t)
 (setq mac-option-modifier 'meta)
 
-;; Spaces, not tabs.
-(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4
+              indent-tab-mode t)
+
+(defun gm-c-mode-hook ()
+  (setq c-basic-offset 4
+        c-default-style "k&r"))
+
+(add-hook 'c-mode-hook 'gm-c-mode-hook)
 
 ;; Show region.
 (transient-mark-mode t)
