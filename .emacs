@@ -11,7 +11,15 @@
         (load filename)
         (setq inferior-lisp-program "clisp"))))
 
-(tool-bar-mode 0)
+;; Enable word-wrap as in traditional text editors in text mode.
+(add-hook 'text-mode-hook
+		  (lambda () (progn 
+					   (longlines-mode 1) 
+					   (longlines-show-hard-newlines))))
+(setq default-fill-column 80)
+
+(if (boundp 'tool-bar-mode)
+    (tool-bar-mode 0))
 (menu-bar-mode 0)
 (require 'paren)
 (show-paren-mode t)
@@ -48,7 +56,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; (require 'color-theme)
 ;; (color-theme-initialize)
-(scroll-bar-mode nil)
+(if (boundp 'scroll-bar-mode)
+	(scroll-bar-mode nil))
 (setq make-backup-files nil)
 
 ;; Go to previous window.
@@ -60,6 +69,8 @@
 (global-set-key (kbd "C-9") 'other-window-backward)
 (global-set-key (kbd "C-<return>") 'dabbrev-expand)
 (global-set-key (kbd "C-1") 'delete-other-windows)
+;; To make Fn+Delete work again on Lion.
+(global-set-key '[(kp-delete)] 'delete-char)
 
 ;; Enable Org Mode.
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -77,8 +88,8 @@
 (setq ido-enable-flex-matching t)
 
 ;; flyspell mode
-(add-hook 'text-mode-hook '(lambda () (flyspell-mode 1)))
-(add-hook 'org-mode-hook '(lambda () (flyspell-mode 1)))
+;; (add-hook 'text-mode-hook '(lambda () (flyspell-mode 1)))
+;; (add-hook 'org-mode-hook '(lambda () (flyspell-mode 1)))
 
 ;; Screen size on startup. This is mostly hit and miss.
 ;; Worse, you can't really change these in realtime.
