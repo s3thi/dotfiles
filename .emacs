@@ -1,26 +1,21 @@
 ;; Ankur Sethi's .emacs
 
-(defvar *the-numbers* '(4 8 15 16 23 42))
+(add-to-list 'load-path "~/geiser/")
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(require 'go-mode-load)
+(defun load-if-exists (filename)
+  (let ((expanded-name (expand-file-name filename)))
+	(if (file-exists-p filename)
+		(load filename))))
 
-(let ((filename (expand-file-name "~/quicklisp/slime-helper.el")))
-  (if (file-exists-p filename)
-      (progn
-        (load filename)
-        (setq inferior-lisp-program "clisp"))))
+(if (load-if-exists "~/quicklisp/slime-helper.el")
+	(setq inferior-lisp-program "sbcl"))
 
-;; Enable word-wrap as in traditional text editors in text mode.
-(add-hook 'text-mode-hook
-		  (lambda () (progn 
-					   (longlines-mode 1) 
-					   (longlines-show-hard-newlines))))
-(setq default-fill-column 80)
+(load-if-exists "~/geiser/elisp/geiser.el")
+(setq geiser-racket-binary "/usr/local/bin/racket")
 
 (if (boundp 'tool-bar-mode)
     (tool-bar-mode 0))
-(menu-bar-mode 0)
+
 (require 'paren)
 (show-paren-mode t)
 (column-number-mode t)
@@ -35,29 +30,15 @@
 
 (add-hook 'c-mode-hook 'gm-c-mode-hook)
 
-;; Show region.
 (transient-mark-mode t)
 (setq search-highlight t)
 (setq scroll-step 2)
-(setq kill-whole-line t)
-
-;; Toggle full-screen.
-(defun toggle-fullscreen ()
-  (interactive) 
-  (set-frame-parameter
-   nil
-   'fullscreen
-   (if (frame-parameter nil 'fullscreen)
-       nil
-     'fullboth)))
-
-(global-set-key [(meta return)] 'toggle-fullscreen)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-;; (require 'color-theme)
-;; (color-theme-initialize)
+
 (if (boundp 'scroll-bar-mode)
 	(scroll-bar-mode nil))
+
 (setq make-backup-files nil)
 
 ;; Go to previous window.
@@ -71,34 +52,12 @@
 (global-set-key (kbd "C-1") 'delete-other-windows)
 ;; To make Fn+Delete work again on Lion.
 (global-set-key '[(kp-delete)] 'delete-char)
-
-;; Enable Org Mode.
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-
-;; Need autofill in text and org modes.
-;; (setq-default fill-column 80)
-;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
-;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
+(global-set-key (kbd "<f1>") "λ")
 
 ;; ido-mode
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-
-;; flyspell mode
-;; (add-hook 'text-mode-hook '(lambda () (flyspell-mode 1)))
-;; (add-hook 'org-mode-hook '(lambda () (flyspell-mode 1)))
-
-;; Screen size on startup. This is mostly hit and miss.
-;; Worse, you can't really change these in realtime.
-;; You're better off just using the mouse to resize the Emacs
-;; window.
-;; (add-to-list 'default-frame-alist (cons 'width 115))
-;; (add-to-list 'default-frame-alist (cons 'height 37))
-;; (add-to-list 'default-frame-alist (cons 'left 0))
-;; (add-to-list 'default-frame-alist (cons 'top 0))
 
 (defun font-existsp (font-name)
   (member font-name (font-family-list)))
@@ -131,21 +90,9 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
-(require 'command-frequency)
-(command-frequency-table-load)
-(command-frequency-mode 1)
-(command-frequency-autosave-mode 1)
-
-;; Modeline is not 3D.
-(set-face-attribute 'mode-line nil :box nil)
-(setq display-time-24hr-format t)
-(display-time)
-
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key (kbd "C-f") 'fill-region)
-
-(put 'dired-find-alternate-file 'disabled nil)
