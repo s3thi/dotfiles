@@ -1,8 +1,11 @@
 ;; Ankur Sethi's .emacs
 
-(add-to-list 'load-path "~/elisp")
-(add-to-list 'load-path "~/elisp/geiser")
-(add-to-list 'load-path "~/elisp/yasnippet")
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
 
 (defun load-if-exists (filename)
   (let ((expanded-name (expand-file-name filename)))
@@ -15,36 +18,37 @@
 (if (load-if-exists "~/elisp/geiser/elisp/geiser.el")
     (setq geiser-racket-binary "/usr/bin/racket"))
 
-(require 'yasnippet)
-(yas/global-mode 1)
+(setq scss-compile-at-save nil)
 
-(require 'color-theme)
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
+;;(if window-system
+;;    (speedbar t))
+;; XF86LaunchA is F3 on the MacBook Pro 8,1 with pommed.
+;;(global-set-key [XF86LaunchA] 'speedbar-get-focus)
 
-(require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default py-indent-offset 4)
 
+(setq longlines-wrap-follows-window-size t)
+(add-hook 'text-mode-hook 'longlines-mode)
+
 (if (boundp 'tool-bar-mode)
     (tool-bar-mode 0))
 (setq inhibit-splash-screen t)
+(display-time-mode 1)
 
 (require 'paren)
 (show-paren-mode t)
 (column-number-mode t)
-(menu-bar-mode nil)
+(menu-bar-mode 0)
 (setq mac-option-modifier 'meta)
 
-(defadvice other-window (after other-window-now activate)
-  (if (< (window-width) 80)
-	  (enlarge-window-horizontally (- 81 (window-width)))))
+;;(defadvice other-window (after other-window-now activate)
+;;  (if (< (window-width) 80)
+;;	  (enlarge-window-horizontally (- 81 (window-width)))))
 ;; (if (< (window-height) 30)
 ;; 	  (enlarge-window (- 30 (window-height)))))
 
-(require 'buffer-move)
 (global-set-key (kbd "<M-S-up>")     'buf-move-up)
 (global-set-key (kbd "<M-S-down>")   'buf-move-down)
 (global-set-key (kbd "<M-S-left>")   'buf-move-left)
@@ -63,9 +67,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (if (boundp 'scroll-bar-mode)
-	(scroll-bar-mode nil))
+	(scroll-bar-mode 0))
 
 (setq make-backup-files nil)
+(setq auto-save-default 0)
 
 ;; Go to previous window.
 (defun other-window-backward (&optional n)
@@ -96,7 +101,7 @@
 ;;  ((eq system-type 'darwin)
 ;;   (set-default-font "-apple-anonymous-medium-r-normal--16-140-72-72-m-140-iso10646-1")))
 
-(set-face-attribute 'default nil :height 105)
+(set-default-font "-*-dejavu sans mono-medium-*-*--14-*-*-*-*-*-*-*")
 
 ;; Colors in shell.
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
@@ -123,6 +128,9 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "C-l") 'goto-line)
+(global-set-key (kbd "C-,") 'ibuffer)
+
+(global-unset-key (kbd "C-z"))
 
 (defun toggle-fullscreen (&optional f)
   (interactive)

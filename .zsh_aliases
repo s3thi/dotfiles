@@ -1,0 +1,30 @@
+alias reload_aliases='source ~/.zsh_aliases'
+alias reload_zshrc='source ~/.zshrc'
+
+alias ls='ls --color'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -al'
+alias t='tree'
+
+alias open='xdg-open'
+
+# Django aliases
+alias djrun='python manage.py runserver'
+alias djsync='python manage.py syncdb'
+alias djdump='python manage.py dumpdata'
+alias djload='python manage.py loaddata'
+
+# Git aliases
+alias giti='git init'
+alias gita='git add'
+alias gits='git status'
+alias gitc='git commit'
+alias gitd='git diff'
+alias gitp='git push'
+
+alias virss='vim ~/.newsbeuter/urls'
+alias vizsh='vim ~/.zshrc'
+alias vialias='vim ~/.zsh_aliases'
+alias reload_b43='sudo rmmod b43 && sudo modprobe b43'
